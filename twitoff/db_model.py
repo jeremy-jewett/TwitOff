@@ -7,6 +7,7 @@ class User(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
     followers = DB.Column(DB.String(120), unique=True, nullable=False)
+    newest_tweet_id = DB.Column(DB.BigInteger, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
