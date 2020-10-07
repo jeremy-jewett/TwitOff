@@ -4,11 +4,17 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+matplotlib = "*"
 
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
 tweepy = "*"
+spacy = "*"
+python-dotenv = "*"
+scikit-learn = "*"
+pandas = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.8"

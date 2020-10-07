@@ -44,7 +44,7 @@ def create_app():
             predication = predict_user(user1, user2, tweet_text)
 
             message = f'''{tweet_text} is more likely to be said by {user1 if prediction else user2}
-                            than {user 2 if prediction else user1}'''
+                            than {user2 if prediction else user1}'''
         return render_template('predict.html', title='Prediction', message=message)
 
     @app.route('/reset')
