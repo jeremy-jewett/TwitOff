@@ -70,3 +70,4 @@ def vectorize_tweet(nlp, tweet_text):
         '''This updates all the users'''
         for user in User.query.all()
             add_user_tweepy(user.username)
+
