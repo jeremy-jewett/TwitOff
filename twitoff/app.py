@@ -1,9 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from .db_model import DB, User
 from .twitter import add_user_tweepy
 from .predict import predict_user
 
-app = Flask(__name__)
 
 def create_app():
     '''Create and configure an instance of the Flask application'''
@@ -19,7 +18,7 @@ def create_app():
     @app.route('/user', methods=['POST'])
     @app.route('/user/<name>', methods=['GET'])
     def add_or_update_user(name=None, message=''):
-        name = name or request.balues['user_name']
+        name = name or request.values['user_name']
 
         try:
             if request.method == 'POST':
@@ -30,7 +29,7 @@ def create_app():
             print(f'Error adding {name}: {e}')
             tweets = []
 
-        return render_template('user.html', title=name, tweets=tweets, message=message)
+        return render_template('\template\user.html', title=name, tweets=tweets, message=message)
 
     @app.route('/compare', methods=['POST'])
     def compare(message=''):
@@ -45,7 +44,7 @@ def create_app():
 
             message = f'''{tweet_text} is more likely to be said by {user1 if prediction else user2}
                             than {user2 if prediction else user1}'''
-        return render_template('predict.html', title='Prediction', message=message)
+        return render_template('\template\predict.html', title='Prediction', message=message)
 
     @app.route('/reset')
     def reset():

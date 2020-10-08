@@ -14,7 +14,7 @@ class User(DB.Model):
 
 class Tweet(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
-    tweets = DB.Column(DB.String(280), unique=True, nullable=False)
+    tweet = DB.Column(DB.String(280), unique=True, nullable=False)
     user_id = DB.Column(DB.Integer, DB.ForeignKey('user.id'), nullable=False)
     user = DB.relationship('User', backref=DB.backref('tweet', lazy=True))
 
@@ -24,3 +24,7 @@ class Tweet(DB.Model):
 # First, to get this to go, go into the flask shell by typing:
 # flask shell
 # Then, enter: from twitoff.db_model import DB, User, Tweet
+
+# set FLASK_APP=twitoff:APP
+# set FLASK_ENV=development
+# flask run
