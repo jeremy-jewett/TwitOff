@@ -29,7 +29,12 @@ def create_app():
             print(f'Error adding {name}: {e}')
             tweets = []
 
-        return render_template('\template\user.html', title=name, tweets=tweets, message=message)
+        return render_template('user.html', title=name, tweets=tweets, message=message)
+
+    @app.route('/update', methods='GET')
+    def update():
+        update_all_users()
+        return render_template('base.html', title='All Tweets Updated!', users = User.query.all())
 
     @app.route('/compare', methods=['POST'])
     def compare(message=''):
@@ -44,12 +49,11 @@ def create_app():
 
             message = f'''{tweet_text} is more likely to be said by {user1 if prediction else user2}
                             than {user2 if prediction else user1}'''
-        return render_template('\template\predict.html', title='Prediction', message=message)
+        return render_template('predict.html', title='Prediction', message=message)
 
     @app.route('/reset')
     def reset():
         DB.drop_all()
         DB.create_all()
-
 
     return app

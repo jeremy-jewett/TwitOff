@@ -17,6 +17,7 @@ scikit-learn = "*"
 pandas = "*"
 matplotlib = "*"
 gunicorn = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"
