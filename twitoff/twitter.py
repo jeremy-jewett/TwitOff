@@ -7,10 +7,10 @@ from .db_model import DB, User, Tweet
 load_dotenv()
 
 # Set Twitter Authentication models
-TWITTER_AUTH = tweepy.OAuthHandler(getenv('fJ2pCtnVWNtCEfId4NO7usnx2'),
-                                   getenv('mYD9O6NXnIpSfoAp6ep7Kp9DQvj29bUDXxNKvOuWaZulbQBPMS'))
-TWITTER_AUTH.set_access_token(getenv('1308577866599280640-efB8hpeYznBocikLR9kGASQ1ebPTCC'),
-                              getenv('DrJLzFfDIldovCl5f3tS74xa7ZDhmkTpSbOdyUyGxIVgq'))
+TWITTER_AUTH = tweepy.OAuthHandler(getenv('TWITTER_CONSUMER_API_KEY'),
+                                   getenv('TWITTER_CONSUMER_API_SECRET'))
+TWITTER_AUTH.set_access_token(getenv('TWITTER_ACCESS_TOKEN'),
+                              getenv('TWITTER_ACCESS_TOKEN_SECRET'))
 TWITTER = tweepy.API(TWITTER_AUTH)
 
 # Load SpaCy pre-trained model
