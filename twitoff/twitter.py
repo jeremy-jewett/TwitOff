@@ -19,7 +19,7 @@ nlp = spacy.load('en_core_web_md', disable=['tagger', 'parser'])
 
 def vectorize_tweet(nlp, tweet_text):
         '''This function returns the SpaCy embeddings for an input text'''
-    return nlp(tweet_text).vector
+    return list(nlp(tweet_text).vector)
 
 
 def add_user_tweepy(username):
