@@ -32,11 +32,6 @@ def create_app():
 
         return render_template('user.html', title=name, tweets=tweets, message=message)
 
-    @app.route('/update', methods='GET')
-    def update():
-        update_all_users()
-        return render_template('base.html', title='All Tweets Updated!', users = User.query.all())
-
     @app.route('/compare', methods=['POST'])
     def compare(message=''):
         user1 = request.values['user1']
@@ -46,7 +41,7 @@ def create_app():
         if user1 == user2:
             message = 'Cannot compare a user to him/herself!'
         else:
-            predication = predict_user(user1, user2, tweet_text)
+            prediction = predict_user(user1, user2, tweet_text)
 
             message = f'''{tweet_text} is more likely to be said by {user1 if prediction else user2}
                             than {user2 if prediction else user1}'''
@@ -56,5 +51,11 @@ def create_app():
     def reset():
         DB.drop_all()
         DB.create_all()
+        return render_template('base.html', title='Reset Database!', users=Users.query.all())
+
+    @app.route('/update', methods='GET')
+    def update():
+        update_all_users()
+        return render_template('base.html', title='All Tweets Updated!', users = User.query.all())
 
     return app
