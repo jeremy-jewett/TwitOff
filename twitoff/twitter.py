@@ -22,9 +22,9 @@ def vectorize_tweet(nlp, tweet_text):
     return nlp(tweet_text).vector
 
 
-    def add_user_tweepy(username):
+def add_user_tweepy(username):
         '''Add a user and their tweets to database'''
-        try:
+    try:
             # Get user info from tweepy
             twitter_user = TWITTER.get_user(username)
 
@@ -43,7 +43,7 @@ def vectorize_tweet(nlp, tweet_text):
                                        since_id=db_user.newest_tweet_id)
 
             # Add newest_tweet_id to the User table
-            if tweets:
+        if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
             # Loop over tweets, get embedding and add to Tweet table
@@ -58,7 +58,7 @@ def vectorize_tweet(nlp, tweet_text):
                 db_user.tweet.append(db_tweet)
                 DB.session.add(db_tweet)
 
-        except Exception as e:
+    except Exception as e:
         print('Error processing {}: {}'.format(username, e))
         raise e
 
@@ -66,8 +66,8 @@ def vectorize_tweet(nlp, tweet_text):
         # If no errors happend than commit the records
             DB.session.commit()
 
-    def update_all_users():
+def update_all_users():
         '''This updates all the users'''
-        for user in User.query.all()
-            add_user_tweepy(user.username)
+    for user in User.query.all()
+        add_user_tweepy(user.username)
 
