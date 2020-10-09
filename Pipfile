@@ -19,6 +19,7 @@ matplotlib = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 en-core-web-md = "*"
+en-core-web-sm = "*"
 
 [requires]
 python_version = "3.8"
