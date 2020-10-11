@@ -56,6 +56,6 @@ def create_app():
     @app.route('/update', methods=['GET'])
     def update():
         update_all_users()
-        return render_template('base.html', title='All Tweets Updated!', users = User.query.all())
+        return render_template('base.html', title='All Tweets Updated!', users=User.query.all())
 
     return app
