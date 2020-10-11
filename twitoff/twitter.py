@@ -29,9 +29,9 @@ def add_user_tweepy(username):
 
         # Add to User table (or check if existing)
         db_user = (User.query.get(twitter_user.id) or
-                User(id=twitter_user.id,
-                     username=username,
-                     followers=twitter_user.followers_count))
+                   User(id=twitter_user.id,
+                   username=username,
+                   followers=twitter_user.followers_count))
         DB.session.add(db_user)
 
         # Get tweets ignoring re-tweets and replies
@@ -45,18 +45,18 @@ def add_user_tweepy(username):
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
-            # Loop over tweets, get embedding and add to Tweet table
-            for tweet in tweets:
+        # Loop over tweets, get embedding and add to Tweet table
+        for tweet in tweets:
 
-             # Get an examble basilica embedding for first tweet
-                embedding = vectorize_tweet(nlp, tweet.full_text)
+            # Get an examble basilica embedding for first tweet
+            embedding = vectorize_tweet(nlp, tweet.full_text)
 
             # Add tweet info to Tweet table
-                db_tweet = Tweet(id=tweet.id,
-                                 tweet=tweet.full_text[:300],
-                                 embedding=embedding)
-                db_user.tweet.append(db_tweet)
-                DB.session.add(db_tweet)
+            db_tweet = Tweet(id=tweet.id,
+                             tweet=tweet.full_text[:300],
+                             embedding=embedding)
+            db_user.tweet.append(db_tweet)
+            DB.session.add(db_tweet)
 
     except Exception as e:
         print('Error processing {}: {}'.format(username, e))
