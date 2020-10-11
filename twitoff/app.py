@@ -1,5 +1,5 @@
 from os import getenv
-from flask import Flask, render_template, request, reset
+from flask import Flask, render_template, request,
 from .db_model import DB, User
 from .twitter import add_user_tweepy, update_all_users
 from .predict import predict_user
@@ -36,7 +36,7 @@ def create_app():
     def compare(message=''):
         user1 = request.values['user1']
         user2 = request.values['user2']
-        tweet_text = reset.values['tweet_text']
+        tweet_text = request.values['tweet_text']
 
         if user1 == user2:
             message = 'Cannot compare a user to him/herself!'
