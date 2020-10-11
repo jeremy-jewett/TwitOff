@@ -63,7 +63,7 @@ def add_user_tweepy(username):
         raise e
 
     else:
-    # If no errors happend than commit the records
+    # If no errors happened, commit the records
         DB.session.commit()
 
 
@@ -110,7 +110,7 @@ def add_user_history(username):
 
         # Loop over tweets, get embedding and add to Tweet table
         for tweet in tweet_history:
-            # Get an examble basilica embedding for first tweet
+
             embedding = vectorize_tweet(nlp, tweet.full_text)
 
             # Add tweet info to Tweet table
