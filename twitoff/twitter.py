@@ -120,6 +120,8 @@ def add_user_history(username):
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
+
+
     except Exception as e:
         print('Error processing {}: {}'.format(username, e))
         raise e
