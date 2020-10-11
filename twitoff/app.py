@@ -36,7 +36,7 @@ def create_app():
     def compare(message=''):
         user1 = request.values['user1']
         user2 = request.values['user2']
-        tweet_text = reset.values('tweet_text')
+        tweet_text = reset.values['tweet_text']
 
         if user1 == user2:
             message = 'Cannot compare a user to him/herself!'
