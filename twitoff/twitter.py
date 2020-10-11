@@ -24,7 +24,8 @@ def vectorize_tweet(nlp, tweet_text):
 
 def add_user_tweepy(username):
     '''Add a user and their tweets to database'''
-    try:# Get user info from tweepy
+    try:
+        # Get user info from tweepy
         twitter_user = TWITTER.get_user(username)
 
         # Add to User table (or check if existing)
@@ -48,12 +49,12 @@ def add_user_tweepy(username):
         # Loop over tweets, get embedding and add to Tweet table
         for tweet in tweets:
 
-            # Get an examble basilica embedding for first tweet
+            # Get an embedding for first tweet
             embedding = vectorize_tweet(nlp, tweet.full_text)
 
             # Add tweet info to Tweet table
             db_tweet = Tweet(id=tweet.id,
-                             tweet=tweet.full_text[:300],
+                             tweet=tweet.full_text[:280],
                              embedding=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
