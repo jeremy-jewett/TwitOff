@@ -1,8 +1,8 @@
 from os import getenv
-import tweepy
-import spacy
-from dotenv import load_dotenv
-from .db_model import DB, User, Tweet
+from flask import Flask, render_template, request
+from .db_model import DB, User
+from .twitter import add_user_tweepy, update_all_users
+from .predict import predict_user
 
 load_dotenv()
 
