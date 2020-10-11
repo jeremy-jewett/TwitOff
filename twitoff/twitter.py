@@ -138,8 +138,3 @@ def update_all_users():
         add_user_tweepy(user.username)
 
 
-def update_all_users():
-    '''This updates all the users'''
-    for user in User.query.all():
-        add_user_tweepy(user.username)
-
